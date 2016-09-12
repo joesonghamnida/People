@@ -18,7 +18,7 @@ public class Person implements Comparable {
 
     @Override
     public String toString() {
-        return String.format(" Introducing the redoubtable %s %s from %s",firstName,lastName,country);
+        return String.format(" Introducing the redoubtable %s %s from %s\n",firstName,lastName,country);
     }
 /*
     public int getId() {
