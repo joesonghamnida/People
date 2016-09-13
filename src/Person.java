@@ -20,14 +20,6 @@ public class Person implements Comparable {
     public String toString() {
         return String.format(" Introducing the redoubtable %s %s from %s\n",firstName,lastName,country);
     }
-/*
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }*/
 
     public String getFirstName() {
         return firstName;
@@ -44,14 +36,6 @@ public class Person implements Comparable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-/*
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }*/
 
     public String getCountry() {
         return country;
@@ -60,14 +44,6 @@ public class Person implements Comparable {
     public void setCountry(String country) {
         this.country = country;
     }
-/*
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }*/
 
     //for sorting
     @Override

@@ -17,19 +17,22 @@ public class People {
     static HashMap<String, ArrayList<Person>> personMap = new HashMap<>();
     static ArrayList<Person> personList = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
 
         Scanner keyboard = new Scanner(System.in);
 
-        readFile();
+
+        try {
+            readFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         writeOutput();
     }
 
 
-    public static HashMap readFile()throws IOException{
+    public static HashMap readFile() throws IOException {
 
-        String personPrevious = "";
-        //read file in
         File f = new File("people.csv");
         Scanner fileScanner = new Scanner(f);
 
@@ -38,14 +41,11 @@ public class People {
 
             String line = fileScanner.nextLine();
             String[] columns = line.split(",");
-
-            //assign country key
             String key = columns[4];
-            //keys okay
+
 
             //assign values
             Person person = new Person(columns[1], columns[2], columns[4]);
-            //values being assigned properly
 
             if (personMap.containsKey(key)) {
                 personList = personMap.get(key);
@@ -65,37 +65,31 @@ public class People {
 
     public static void writeOutput() {
 
-        for (ArrayList list : personMap.values())
-        {
+        for (ArrayList list : personMap.values()) {
             System.out.println(list);
         }
     }
 
-    public static void writeFile()throws IOException{
+    public static void writeFile() throws IOException {
 
-    File j = new File("person.json");
+        File j = new File("person.json");
+        JsonSerializer serializer = new JsonSerializer();
+        serializer.include("*");
+        String json = serializer.serialize(personMap);
+        System.out.println(json);
+        FileWriter fw = new FileWriter(j);
+        fw.write(json);
+        try
 
-    //write json boilerplate
-    //helper method
-    //need to use getter and setter for serializer
-    JsonSerializer serializer = new JsonSerializer();
-            serializer.include("*");
-    String json = serializer.serialize(personMap);
-            System.out.println(json);
-    FileWriter fw = new FileWriter(j);
-            fw.write(json);
-            try
-
-    {
-        fw.close();
-    } catch(
-    IOException e)
-
-    {
-        e.printStackTrace();
+        {
+            fw.close();
+        } catch (
+                IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
-    }
 
 
 
